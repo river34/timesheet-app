@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Librarians login system</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script type="text/javascript" src="main.js" ></script>
+</head>
+<body onload="check();">
+    <form class="content" action="javascript:;">
+        <div class="imgcontainer">
+            <img src="images/img_avatar2.png" alt="Avatar" class="avatar">
+        </div>
+
+        <!-- Login -->
+        <div class="container" id="login-container">
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="uname" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" required>
+
+            <button type="submit" onclick="login(
+                document.getElementsByName('uname')[0].value,
+                document.getElementsByName('psw')[0].value)">
+                Login
+            </button>
+        </div>
+
+        <!-- User info -->
+        <div class="container" id="userinfo-container" hidden>
+            <div class="log">
+                <div class="log-row log-name">Most recent record: </div>
+                <div class="log-row">Start time: <span id="start-time"></span></div>
+                <div class="log-row">End time: <span id="end-time"></span></div>
+            </div>
+
+            <button type="button" class="start-button" onclick="logStartTimeHandle()">Start</button>
+            <button type="button" class="end-button" onclick="logEndTimeHandle()">End</button>
+        </div>
+
+        <!-- Admin -->
+        <div class="container" id="admin-container" hidden>
+            <!-- Action -->
+            <div class="container" id="adminaction-container" hidden>
+                <button type="button" class="start-button" onclick="displayCreateUser();">Create New User</button>
+                <button type="button" class="start-button" onclick="displayUserList();">Show User List</button>
+            </div>
+
+            <!-- Create new user -->
+            <div class="container" id="createuser-container" hidden>
+                <span onclick="closeCreateUser()" class="close" title="Close">&times;</span>
+
+                <label for="new-uname"><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="new-uname" required>
+
+                <label for="new-psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="new-psw" required>
+
+                <button type="submit" onclick="createUser(
+                    Type.user,
+                    document.getElementsByName('new-uname')[0].value,
+                    document.getElementsByName('new-psw')[0].value)">
+                    Create User
+                </button>
+            </div>
+
+            <!-- User list -->
+            <div class="container" id="userlist-container" hidden>
+                <span onclick="closeUserList()" class="close" title="Close">&times;</span>
+
+                <table id="userlist">
+                    <tr>
+                        <th>Username</th>
+                        <th>Password</th>
+                        <th></th>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- User log -->
+            <div class="container" id="userlog-container" hidden>
+                <span onclick="closeUserLog()" class="close" title="Close">&times;</span>
+
+                <div class="log-name" id="userlog-username"></div>
+                <table id="userlog">
+                    <tr>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th># of Hours</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Create admin -->
+        <div class="container" id="createadmin-container" hidden>
+            <h1>Create Admin</h1>
+
+            <label for="admin-psw"><b>Ppassword</b></label>
+            <input type="password" placeholder="Enter Password" name="admin-psw" required>
+
+            <button type="submit" onclick="createAdmin('admin',
+                document.getElementsByName('admin-psw')[0].value)">
+                Create
+            </button>
+        </div>
+
+        <!-- Log out button -->
+        <div class="container" id="logout-container" hidden>
+            <button type="submit" class="exit-button" onclick="logout()">Log Out</button>
+        </div>
+    </form>
+</body>
+</html>
