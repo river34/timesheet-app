@@ -12,6 +12,9 @@
             <img src="images/img_avatar2.png" alt="Avatar" class="avatar">
         </div>
 
+        <!-- Alart -->
+        <div class="container" id="alert-container"></div>
+
         <!-- Login -->
         <div class="container" id="login-container">
             <label for="uname"><b>Username</b></label>
@@ -97,7 +100,9 @@
         <div class="container" id="createadmin-container" hidden>
             <h1>Create Admin</h1>
 
-            <label for="admin-psw"><b>Ppassword</b></label>
+            <p><b>Username: admin</b></p>
+
+            <label for="admin-psw"><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="admin-psw" required>
 
             <button type="submit" onclick="createAdmin('admin',

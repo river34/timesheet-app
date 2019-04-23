@@ -13,8 +13,6 @@
     "electron-packager": "^13.1.1"
   },
   "dependencies": {
-    "electron-json-storage": "^4.1.6",
-    "electron-store": "^3.2.0",
-    "start": "^5.1.0"
+    "electron-json-storage": "^4.1.6"
   }
 }

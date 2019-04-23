@@ -14,6 +14,7 @@ let win;
 var uname;
 
 var Type = {"admin":0, "user":1};
+var AlertType = {"danger":0, "danger":1, "info":2, "warning":3};
 
 const login_win_width = 450;
 const login_win_height = 600;
@@ -86,6 +87,35 @@ function handleLoginSubmit(username, password)
     alert("username:" + username + "; password: " + password);
 }
 
+function closeAlert(element)
+{
+    element.remove();
+}
+
+function alert(type, message)
+{
+    var alert_box = document.getElementById('alert-container');
+    var class_name = "alert ";
+    if (!alert_box) { return; }
+    switch(type) {
+        case AlertType.danger:
+            class_name += "danger";
+            break;
+        case AlertType.success:
+            class_name += "success";
+            break; 
+        case AlertType.info:
+            class_name += "info";
+            break; 
+        case AlertType.warning:
+            class_name += "warning";
+            break;
+    }
+
+    var innerHTML = '<div class="'+class_name+'"><span class="closebtn" onclick="closeAlert(this.parentElement)">&times;</span>'+ message + '</div>';
+    alert_box.innerHTML = innerHTML;
+}
+
 function login(username, password)
 {
     //const defaultDataPath = storage.getDefaultDataPath()
@@ -121,12 +151,12 @@ function login(username, password)
                     }
                 } else {
                     console.log('Password is incorrect');
-                    alert('Password is incorrect');
+                    alert(AlertType.warning, 'Password is incorrect');
                 }
             });
         } else {
             console.log('Cannot find username ' + username);
-            alert('User does not exist');
+            alert(AlertType.warning, 'User does not exist');
         }
     });
 }
@@ -195,7 +225,7 @@ function createUser(type, username, password)
 
         if (hasKey) {
             console.log('There is user data stored');
-            alert('User exists!');
+            alert(AlertType.warning, 'User exists!');
         } else {
             storage.set(username, { 
                 username: username, 
@@ -203,8 +233,8 @@ function createUser(type, username, password)
                 type: type
             }, function(error) {
                 if (error) throw error;
-                console.log('User is created');
-                alert('User is created');
+                console.log();
+                alert(AlertType.success, 'User is created');
                 closeCreateUser();
             });
         }
@@ -217,7 +247,7 @@ function createAdmin(username, password) {
 
         if (hasKey) {
             console.log('There is user data stored');
-            alert('User exists!');
+            alert(AlertType.waning, 'User exists!');
         } else {
             storage.set(username, { 
                 username: username, 
